@@ -7518,31 +7518,18 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="Mini-lab-del-4-Numerisk-beregning-av-heisens-fart-og-posisjon">Mini-lab del 4 Numerisk beregning av heisens fart og posisjon<a class="anchor-link" href="#Mini-lab-del-4-Numerisk-beregning-av-heisens-fart-og-posisjon">¶</a></h2><p><b>Bakgrunn og mål</b></p>
-<p>I denne siste delen av lab-oppgaven skal du bruke de akselerasjonsdataene du har målt fra en heis i bevegelse (antatt i Realfagbygget på NTNU). Målet er først å beregne heisens fart som funksjon av tid, for deretter å finne dens posisjon.
-Du kan i siste del støtte deg på KI-verktøy for å løse programmeringsoppgaver. Dersom du velger å bruke KI, skal du forklare hvordan du bruker det (prompt du bruker), og hva det bidrar med (for eksempel kodehjelp, tips til metoder, feilsøking, osv.).</p>
-<h1 id="Del-A:-Beregne-farten-fra-akselerasjonsdata">Del A: Beregne farten fra akselerasjonsdata<a class="anchor-link" href="#Del-A:-Beregne-farten-fra-akselerasjonsdata">¶</a></h1><p><b>Beregning av fart</b></p>
-<p>Du skal regne ut farten $v(t)$ fra akselerasjonen $a(t)$ ved å løse den enkleste formen for differensialligningen</p>
-<p>$\frac{dv}{dt}=a(t)$</p>
-<p>Numerisk tilsvarer dette å løse integralet</p>
-<p>$\int dv=\int a(t)⋅dt$</p>
-<p>$v=v_0+ \int a(t)  dt$</p>
-<p>Du kan velge blant flere algoritmer for numerisk integrasjon. En enkel metode er trapesmetoden (se eksempelet nedenfor).</p>
-<p>Eksempelkode som viser en numerisk integrasjon i der med cumtrapz fra SciPy</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">cumtrapz</span>
-<span class="n">fart</span> <span class="o">=</span> <span class="n">cumtrapz</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">tid</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
+<p>I denne siste delen av lab-oppgaven skal du bruke de akselerasjonsdataene du har samlet fra en heis i bevegelse (eksempelvis i Realfagsbygget på NTNU). Formålet med denne oppgaven er å</p>
+<ol>
+<li>Beregne heisens fart 𝑣(𝑡).</li>
+<li>Beregne heisens forflytning 𝑠(𝑡).</li>
+<li>Hensikten med denne laben er å få erfaring med presentasjon og formidling av eksperimentelle data.</li>
+</ol>
+<p>I denne oppgaven kan du støtte deg på/bruke et selvvalgt KI-verktøy.</p>
+<ol>
+<li>Hvilket KI-systemet bruker du?</li>
+<li>Hvilket prompt du bruker?</li>
+<li>Endelig kildekode skal være med i innleveringen.</li>
+</ol>
 </div>
 </div>
 </div>
@@ -7553,19 +7540,21 @@ Du kan i siste del støtte deg på KI-verktøy for å løse programmeringsoppgav
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Her tilsvarer signal akselerasjonsmålingene dine, og tid er tiden for hver måling.</p>
+<h1 id="Del-A:-Beregne-farten-fra-akselerasjonsdata">Del A: Beregne farten fra akselerasjonsdata<a class="anchor-link" href="#Del-A:-Beregne-farten-fra-akselerasjonsdata">¶</a></h1><p>Du skal regne ut farten $𝑣(𝑡)$ til heisen fra de målte akselerasjonsdataene $𝑎(𝑡)$. I praksis må du løse differensialligningen</p>
+<p>$\frac{dv}{dt}=a(t)  \Longrightarrow \int_{v_0}^v dv=\int_{t_0}^t a(t)⋅dt$</p>
+<p>Numerisk tilsvarer dette å løse integralet$</p>
+<p>$v=v_0+ \int_{t_0}^t a(t) dt$</p>
+<p>Her kan du velge blant flere mulige algoritmer for numerisk integrasjon. Python har ferdige funksjoner for Riemann-sum, trapesmetoden og simpsons metode for numerisk integrasjon (scipy.integrate).</p>
 <p><b>Plot av fart vs. tid</b></p>
 <ol>
-<li>Regn deg frem til farten og plott $v(t)$ som funksjon av tiden.</li>
-<li>Presenter de målte dataene (f.eks. som punkter eller kurve) i samme figur eller i en separat framstilling, hvis hensiktsmessig.</li>
-<li>Inkluder en kort forklaring av hva figuren viser, og begrunn eventuelle valg du har gjort (for eksempel metode, korrigering av data).</li>
+<li>Regn ut farten $𝑣(𝑡)$ til heisen fra akselerasjonsdataene.</li>
+<li>2. Presenter $𝑣(𝑡)$ som funksjon av tiden.</li>
 </ol>
 <p><b>Refleksjon og feilsøking</b></p>
 <ol>
-<li>Vurdering av resultater: Ser målingen av farten rimelig ut sammenlignet med forventningene (heisen bør for eksempel stoppe på toppen og bunnen av bevegelsen)?</li>
-<li>Tidsrom med null fart: På hvilke tidspunkt(er) i tidsserien forventer du at heisen har hastighet lik null? Stemmer det med resultatene dine du har vist i plottet, for farten du har funnet?</li>
-<li>Målefeil og korreksjoner: Dersom det er avvik eller støy, hvordan kan du eventuelt korrigere for dem? Forklar hvilke feil du ser, og hvordan de oppstår (f.eks. kalibreringsfeil, støy i sensoren).</li>
-<li>Løsninger og justeringer: Beskriv hvordan du gikk fram for å gjøre dataene mer “meningsfulle”. Hvis du brukte AI for feilsøking eller forbedring av koden, beskriv bruken konkret.</li>
+<li>Vurder om den utregnede farten er rimelig i forhold til det du forventer?</li>
+<li>På hvilke tidspunkter i tidsserien forventer du at heisen har hastighet lik null? Stemmer dette med den farten du har regnet ut?</li>
+<li>Hvis du har problem med punkt 2. Hva skyldes dette? Og hvordan kan du korrigere for dette?</li>
 <ol>
 </ol></ol></div>
 </div>
@@ -7577,47 +7566,23 @@ Du kan i siste del støtte deg på KI-verktøy for å løse programmeringsoppgav
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Del-B:-Beregne-posisjonen-fra-farten">Del B: Beregne posisjonen fra farten<a class="anchor-link" href="#Del-B:-Beregne-posisjonen-fra-farten">¶</a></h1><p><b>Prinsipp for posisjon</b></p>
-<p>Når farten $v(t)$ er kjent, kan du finne posisjonen $s(t)$ ved å løse:</p>
-<p>$\int ds=\int v(t)⋅dt$</p>
-<p>$s=s_0+\int v(t) dt$
-Dette kan også gjøres ved trapesmetoden eller en lignende numerisk integrasjonsmetode.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="n">pos</span> <span class="o">=</span> <span class="n">cumtrapz</span><span class="p">(</span><span class="n">fart</span><span class="p">,</span> <span class="n">tid</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Her tilsvarer fart den beregnede hastigheten, og tid er tidsvektoren.</p>
-<p><b>Analyser bevegelsen</b></p>
+<h1 id="Del-B:-Beregne-posisjonen-fra-farten">Del B: Beregne posisjonen fra farten<a class="anchor-link" href="#Del-B:-Beregne-posisjonen-fra-farten">¶</a></h1><p>Når farten $v(t)$ er kjent, finner du posisjonen $s(t)$ fra:</p>
+<p>$\frac{ds}{dt}=v \Longrightarrow \int_{s_0}^s ds=\int_{t_0}^t v(t)⋅dt$</p>
+<p>Ved å benytte samme numeriske metode som i punkt A.</p>
+<p><b>Analyser bevegelsen:</b></p>
 <ol>
-<li>Hvor mange etasjer?: </li>
-<li>Fra posisjon vs. tid kan du anslå hvilken høydeforskjell heisen har tilbakelagt, og dermed hvor mange etasjer den har passert.</li>
-<li>Reell distanse: Hvor mange meter har heisen egentlig beveget seg (opp eller ned)? </li>
-<li>Bruk relevant omregningsfaktor hvis du kjenner etasjehøyde.</li>
+<li>Hvor mange etasjer tok du heisen?</li>
+<li>Hvor langt har heisen flyttet seg basert på dine målte data?</li>
+<li>Sammenlign dine resultater med at en målt avstand mellom to etasjer i Realfagbygget er målt til 3.75 $ \pm $ 0.01 meter. $v(t)$</li>
 </ol>
-<p><b>Diskuter om resultatene er realistiske</b></p>
+<b>Refleksjon og feilsøking:</b>
 <ol>
-<li>Viser resultatene en logisk start- og sluttposisjon?</li>
-<li>Eventuelle målefeil på akselerasjonen påvirker også integrasjonen, så kommenter gjerne usikkerheter.</li>
+<li>Viser resultatene dine en logisk start -og sluttposisjon? (Ser det ut som at heisen står i ro ved start -og sluttposisjon?).</li>
+<li>Kommenter eventuelle problemer med målingene.</li>
+</ol>
+<b>Konklusjon:</b>
+<ol>
+<li>Konkluder kort resultatene dine.</li>
 </ol>
 </div>
 </div>
@@ -7629,12 +7594,7 @@ Dette kan også gjøres ved trapesmetoden eller en lignende numerisk integrasjon
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Del-C:-Samle-og-gi-en-samlet-presentasjon-av-mini-labene">Del C: Samle og gi en samlet presentasjon av mini-labene<a class="anchor-link" href="#Del-C:-Samle-og-gi-en-samlet-presentasjon-av-mini-labene">¶</a></h1><p><b>Oppsummering av minilab 2, 3 og 4</b></p>
-<p>Sett sammen oppgavene fra tidligere minilaber og denne delen i en Jupyter Notebook-fil.  Forsikre deg om at alle figurer har passende titler, aksemerking og forklaringer. Pass på at alle metodene du har brukt, og eventuelle justeringer av data er beskrevet.</p>
-<p><b>Bruk av KI-verktøy </b></p>
-<p>Der du benytter KI i denne delen (eller del 3), beskriv hva du brukte det til, prompt du har brukt, hvordan det hjalp deg og noen refleksjoner rundt måten du brukte det på.</p>
-<p><b>Innlevering</b></p>
-<p>Send inn besvarelsen som en Jupyter Notebook-fil. Filen inneholder figurer, kode og dine kommentarer og refleksjoner. Sørg for at du kommenterer koden og tar med konklusjoner og refleksjoner om feil, usikkerhet og mulige forbedringer. Dette er, om den blir godkjent, din versjon av lab i emnet IFYT1002.</p>
+<h1 id="Del-C:-Samle-og-gi-en-samlet-presentasjon-av-mini-labene">Del C: Samle og gi en samlet presentasjon av mini-labene<a class="anchor-link" href="#Del-C:-Samle-og-gi-en-samlet-presentasjon-av-mini-labene">¶</a></h1><p>Samle mini-lab 2, 3 og 4 i ett Jupyter-notebook dokument. Pass på at alle figurer har passende titler, aksebeskrivelser og blir forklart i teksten. Dette dokumentet skal nå inneholde alle figurer, kode, kommentarer og refleksjoner. Det innleverte Jupyter-dokumentet, når den blir godkjent, er din versjon av lab i emnet IFYT1002.</p>
 </div>
 </div>
 </div>
